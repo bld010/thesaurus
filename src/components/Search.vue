@@ -1,15 +1,17 @@
 <template>
-  <div class="hello">
+  <div class="Search">
     <h1>{{ msg }}</h1>
-    <p>
+    <input
+      placeholder="Search ..."
+    >
+    <button>Search</button>
       
-    </p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Search',
   props: {
     msg: String
   }
