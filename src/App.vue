@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <Header />
-    <Search />
-    <WordList />
+    <Search 
+      v-on:onSearchInput="updateSearchTerm" 
+      v-on:receiveResultsFromSearch="saveResults"
+      :searchTermFromClick="searchTerm"  
+    />
+    <WordList :searchTerm="searchTerm" :synonyms="synonyms" />
   </div>
 </template>
 
@@ -21,7 +25,22 @@ export default {
   },
   data: () => {
     return {
-
+      searchTerm: '',
+      results: [],
+      synonyms: [],
+      partOfSpeech: '',
+      definitions: ''
+    }
+  },
+  methods: {
+    updateSearchTerm (value) {
+      this.searchTerm = value
+    },
+    saveResults(value) {
+      this.results = value
+      this.synonyms = value.meta.syns.flat(),
+      this.partOfSpeech = value.fl,
+      this.definitions = value.shortdef
     }
   }
 }
