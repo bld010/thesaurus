@@ -32,12 +32,16 @@ export default {
     emitSearchTermToApp: function() {
       this.$emit('onSearchInput', this.searchTerm)
     },
+    emitResultsToApp: function() {
+      this.$emit('receiveResultsFromSearch', this.results)
+    },
     fireFetchCall: async function() {
       try {
         let searchResults = await fetchSynonyms(this.searchTerm)
         this.results = await searchResults
         this.synonyms = searchResults.meta.syns.flat()
         this.loading = false
+        this.emitResultsToApp();
       } catch (error) {
         this.error = 'There was an error finding your synonyms. Please try again.'
         this.loading = false

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <Search v-on:onSearchInput="updateSearchTerm"/>
+    <Search v-on:onSearchInput="updateSearchTerm" v-on:receiveResultsFromSearch="saveResults"/>
     <WordList :searchTerm="searchTerm" />
     <h2>App.searchTerm: {{ searchTerm }}</h2>
   </div>
@@ -22,12 +22,16 @@ export default {
   },
   data: () => {
     return {
-      searchTerm: ''
+      searchTerm: '',
+      results: []
     }
   },
   methods: {
     updateSearchTerm (value) {
       this.searchTerm = value
+    },
+    saveResults(value) {
+      this.results = value
     }
   }
 }
