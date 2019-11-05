@@ -9,6 +9,13 @@
   </section>
 </template>
 
+<script>
+export default {
+  name: 'WordList',
+  props: ['searchTerm']
+}
+</script>
+
 <style scoped>
 
   ul {

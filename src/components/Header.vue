@@ -1,7 +1,6 @@
 <template>
   <header>
     <h1>Thesaurus</h1>
-    
   </header>
 </template>
 

@@ -8,7 +8,6 @@
 
 <script>
 
-// import HelloWorld from './components/HelloWorld.vue'
 import Search from './components/Search.vue';
 import Header from './components/Header.vue';
 import WordList from './components/WordList.vue';
