@@ -5,8 +5,12 @@
       placeholder="Search ..."
       name="search"
       v-model="searchTerm"
+      v-on:keyup="emitToApp"
     >
-    <button v-on:click.prevent v-on:click="fetchSynonyms">Search</button>
+    <button 
+      v-on:click.prevent 
+
+      >Search</button>
     {{ searchTerm }}
   </form>
 </template>
@@ -22,8 +26,8 @@ export default {
     }
   }, 
   methods: {
-    async fetchSynonyms() {
-      
+    emitToApp () {
+      this.$emit('onSearchInput', this.searchTerm)
     }
   }
 }
