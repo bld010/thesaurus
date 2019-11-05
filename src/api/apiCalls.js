@@ -1,10 +1,5 @@
-
-
-
 export const fetchSynonyms = async (searchTerm) => {
   
-
-
   let url =`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${searchTerm}?key=${process.env.VUE_APP_API_KEY}`
   
   try {
@@ -18,5 +13,4 @@ export const fetchSynonyms = async (searchTerm) => {
     return error
   }
   
-
 }
