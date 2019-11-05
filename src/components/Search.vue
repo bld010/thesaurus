@@ -1,5 +1,6 @@
 <template>
-  <form class="Search">
+  <div>
+    <form class="Search">
     <label for="search">Search for synonyms</label>
     <input
       placeholder="Search ..."
@@ -8,10 +9,14 @@
       v-on:keyup="emitSearchTermToApp"
     >
     <button v-on:click.prevent="fireFetchCall(searchTerm)">Search</button>
+    </form>
+    <div>
+      <h2 v-if="loading === true">Loading...</h2>
+      <h2 v-if="synonyms.length > 0">Words similar to "{{searchTerm}}"</h2>
+      <h2 v-if="error !== ''">No synonyms found for "{{searchTerm}}"</h2>
+    </div>
+  </div>
 
-    <p v-if="loading === true">Loading...</p>
-
-  </form>
 </template>
 
 <script>
@@ -19,13 +24,20 @@ import { fetchSynonyms } from '../api/apiCalls.js';
 
 export default {
   name: 'Search',
+  props: ['searchTermFromClick'],
+  watch: {
+    searchTermFromClick: function() {
+      this.searchTerm=this.searchTermFromClick,
+      this.fireFetchCall(this.searchTerm)
+    }
+  },
   data: function() {
     return {
       searchTerm: '',
       results: [],
       synonyms: [],
       error: '',
-      loading: true
+      loading: false
     }
   }, 
   methods: {
@@ -37,6 +49,7 @@ export default {
     },
     fireFetchCall: async function() {
       try {
+        this.loading = true;
         let searchResults = await fetchSynonyms(this.searchTerm)
         this.results = await searchResults
         this.synonyms = searchResults.meta.syns.flat()
@@ -56,8 +69,12 @@ export default {
 
 <style scoped>
 
+div {
+  min-height: 80px;
+}
+
 form {
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   min-width: 30%;
@@ -66,6 +83,10 @@ form {
   padding-bottom: 20px;
   border-bottom: 1px solid #039B77;
   justify-content: center;
+}
+
+p {
+  margin: auto
 }
 
 input {
@@ -88,5 +109,9 @@ li {
 
 a {
   color: #42b983;
+}
+
+div {
+  min-height: 40px;
 }
 </style>

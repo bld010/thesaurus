@@ -9,13 +9,6 @@
 
   export default {
     name: 'Header',
-    components: {
-    },
-    data: () => {
-      return {
-        
-      }
-    }
   }
 </script>
 
@@ -31,6 +24,6 @@ header {
   padding: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
 }
 </style>
