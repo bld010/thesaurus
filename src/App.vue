@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <Search />
+    <WordList />
   </div>
 </template>
 
@@ -10,13 +11,14 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import Search from './components/Search.vue';
 import Header from './components/Header.vue';
-// import WordList from './components/WordList.vue';
+import WordList from './components/WordList.vue';
 
 export default {
   name: 'app',
   components: {
     Header,
-    Search
+    Search,
+    WordList
   },
   data: () => {
     return {
