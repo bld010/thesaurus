@@ -2,8 +2,8 @@
   <div id="app">
     <Header />
     <Search v-on:onSearchInput="updateSearchTerm"/>
-    <WordList />
-    <h1>App.searchTerm: {{ searchTerm }}</h1>
+    <WordList :searchTerm="searchTerm" />
+    <h2>App.searchTerm: {{ searchTerm }}</h2>
   </div>
 </template>
 

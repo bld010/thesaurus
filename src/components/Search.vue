@@ -5,32 +5,48 @@
       placeholder="Search ..."
       name="search"
       v-model="searchTerm"
-      v-on:keyup="emitToApp"
+      v-on:keyup="emitSearchTermToApp"
     >
-    <button 
-      v-on:click.prevent 
+    <button v-on:click.prevent="fireFetchCall(searchTerm)">Search</button>
 
-      >Search</button>
-    {{ searchTerm }}
+    <p v-if="loading === true">Loading...</p>
+
   </form>
 </template>
 
 <script>
-
+import { fetchSynonyms } from '../api/apiCalls.js';
 
 export default {
   name: 'Search',
-  data() {
+  data: function() {
     return {
-      searchTerm: ''
+      searchTerm: '',
+      results: [],
+      synonyms: [],
+      error: '',
+      loading: true
     }
   }, 
   methods: {
-    emitToApp () {
+    emitSearchTermToApp: function() {
       this.$emit('onSearchInput', this.searchTerm)
+    },
+    fireFetchCall: async function() {
+      try {
+        let searchResults = await fetchSynonyms(this.searchTerm)
+        this.results = await searchResults
+        this.synonyms = searchResults.meta.syns.flat()
+        this.loading = false
+      } catch (error) {
+        this.error = 'There was an error finding your synonyms. Please try again.'
+        this.loading = false
+      }
+
     }
   }
 }
+
 
 </script>
 

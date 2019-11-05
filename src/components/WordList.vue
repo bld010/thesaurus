@@ -1,6 +1,8 @@
 <template>
   <section>
-  <h2>Words similar to [search term]</h2>
+    <div>
+      <h2 v-if="searchTerm !== ''">Words similar to {{searchTerm}}</h2>
+    </div>
     <ul>
       <li>Word 1</li>
       <li>Word 2</li>
@@ -10,15 +12,27 @@
 </template>
 
 <script>
+
+
 export default {
   name: 'WordList',
-  props: ['searchTerm']
+  props: ['searchTerm'],
+  data: function () {
+    return {
+      synonyms: []
+    }
+  },
+  methods: {
+    
+  }
 }
+
 </script>
 
 <style scoped>
 
   ul {
+    min-height: 200px;
     list-style: none;
     max-width: 400px;
     margin: auto;
@@ -29,5 +43,9 @@ export default {
   li {
     margin: 5px;
     padding: 5px;
+  }
+
+  div {
+    height: 50px;
   }
 </style>
