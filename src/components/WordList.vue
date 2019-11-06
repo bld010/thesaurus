@@ -1,8 +1,7 @@
 <template>
   <section>
-    
     <ul>
-      <li v-for="(synonym, index) in synonyms" :key="index" tabindex=0 @click="emitSearchTermToApp(synonym)">
+      <li v-for="(synonym, index) in synonyms" :key="index" tabindex=0 @click="emitSearchTermToApp(synonym)" @keyup="keyUpOnSynonym(synonym)">
         {{synonym}}
         </li>
     </ul>
@@ -20,6 +19,11 @@ export default {
       event.target.blur()
       this.$emit('onSynonymClick', synonym)
     },
+    keyUpOnSynonym: function(synonym) {
+      if (event.key == "Enter") {
+        this.emitSearchTermToApp(synonym)
+      }
+    }
   }
 }
 
