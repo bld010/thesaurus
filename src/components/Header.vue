@@ -1,6 +1,7 @@
 <template>
   <header>
-    <h1>Thesaurus</h1>
+    <h1>TheSaurus</h1>
+    <img src="../assets/diplodocus.svg">
   </header>
 </template>
 
@@ -20,10 +21,15 @@ h1 {
 
 header {
   border-bottom: 1px solid #039B77;
-  margin: 0;
-  padding: 10px;
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+img {
+  transform: scaleX(-1);
+  height: 50px;
+  margin-top: 10px;
 }
 </style>
