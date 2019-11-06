@@ -6,7 +6,7 @@ describe('Header', () => {
   it('renders a header', () => {
     const wrapper = shallowMount(Header)
   
-    expect(wrapper.find('h1').text()).toEqual('Thesaurus')
+    expect(wrapper.find('h1').text()).toEqual('TheSaurus')
   })
 
   it('matches the snapshot', () => {
