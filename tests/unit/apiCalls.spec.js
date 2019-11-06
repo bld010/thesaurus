@@ -51,7 +51,21 @@ describe('apiCalls', () => {
 
       global.fetch = mockFetch;
 
-      await expect(fetchSynonyms('happy')).resolves.toEqual(expectedError)
+      await expect(fetchSynonyms('happy')).rejects.toEqual(expectedError)
+    })
+
+    it('should return an error if fetch fails', async () => {
+      let expectedError = Error('There was an error when fetching your synonyms. Please try again.')
+
+
+      let mockFetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(expectedError)
+      })
+
+      global.fetch = mockFetch;
+
+      await expect(fetchSynonyms('happy')).rejects.toEqual(expectedError)
+
     })
   })
 })
