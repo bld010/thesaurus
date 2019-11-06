@@ -50,6 +50,7 @@ export default {
         this.results = [];
         this.error = '';
         this.loading = true;
+        this.synonyms = [];
         let searchResults = await fetchSynonyms(this.searchTerm)
         this.results = await searchResults
         if (searchResults.meta.syns) {

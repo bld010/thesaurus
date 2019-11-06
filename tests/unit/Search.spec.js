@@ -56,4 +56,42 @@ describe('Search', () => {
 
     expect(wrapper.emitted()).toEqual({'receiveResultsFromSearch': [[mockResults]]})
   })
+
+  describe('fireFetchCall', () => {
+    it('should clear out the data when fired', () => {
+
+      const wrapper = shallowMount(Search);
+
+      let expectedData = {
+        searchTerm: '',
+        results: [],
+        synonyms: [],
+        error: '',
+        loading: false
+      }
+
+      let mockFetchSynonyms = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          meta: {
+            syns: []
+          }
+        })
+      })
+
+      let mockEmitResultsToApp = jest.fn()
+
+      wrapper.vm.results = ['mock result'];
+      wrapper.vm.error = 'mock error';
+      wrapper.vm.loading = false;
+      wrapper.vm.synonyms = ['mock synonyms']
+      wrapper.vm.emitResultsToApp = mockEmitResultsToApp;
+      wrapper.vm.fetchSynonyms = mockFetchSynonyms;
+
+      wrapper.vm.fireFetchCall()
+
+      let data = Search.data()
+
+      expect(data).toEqual(expectedData)
+    })
+  })
 })
