@@ -14,7 +14,7 @@ I'd like to learn more about the event emission process of Vue.js, the proper ar
 
 ### Production Link
 
-[Click here to view the deployed application.]()
+[Click here to view the deployed application.](https://brianna-delvalle-vue-thesaurus.herokuapp.com/)
 
 ### Setup
 
