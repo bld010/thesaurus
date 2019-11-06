@@ -2,15 +2,18 @@
   "name": "thesaurus",
   "version": "0.1.0",
   "private": true,
+  "description": "A Vue.js project",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "test": "./node_modules/.bin/jest"
+    "test": "./node_modules/.bin/jest",
+    "start": "node server.js"
   },
   "dependencies": {
     "core-js": "^3.3.2",
+    "express": "^4.17.1",
     "jest": "^24.9.0",
     "vue": "^2.6.10"
   },
