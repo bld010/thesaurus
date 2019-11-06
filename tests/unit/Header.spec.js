@@ -8,4 +8,10 @@ describe('Header', () => {
   
     expect(wrapper.find('h1').text()).toEqual('Thesaurus')
   })
+
+  it('matches the snapshot', () => {
+    const wrapper = shallowMount(Header)
+
+    expect(wrapper).toMatchSnapshot();
+  })
 })
