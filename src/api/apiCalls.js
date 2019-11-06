@@ -10,7 +10,7 @@ export const fetchSynonyms = async (searchTerm) => {
     let results = await data.json()
     return results[0]
   } catch (error) {
-    return error
+    throw error
   }
   
 }
