@@ -2,7 +2,7 @@
   <section>
     
     <ul>
-      <li v-for="(synonym, index) in synonyms" :key="index" tabindex=0>
+      <li v-for="(synonym, index) in synonyms" :key="index" tabindex=0 @click="emitSearchTermToApp(synonym)">
         {{synonym}}
         </li>
     </ul>
@@ -14,15 +14,11 @@
 
 export default {
   name: 'WordList',
-  props: ['searchTerm', 'synonyms'],
-  data: function () {
-    return {
-      synonymResults: this.synonyms
-    }
-  },
+  props: ['synonyms'],
   methods: {
-    emitSearchTermToApp: function() {
-      this.$emit('onSearchInput', this.searchTerm)
+    emitSearchTermToApp: function(synonym) {
+      event.target.blur()
+      this.$emit('onSynonymClick', synonym)
     },
   }
 }

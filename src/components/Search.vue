@@ -6,14 +6,14 @@
       placeholder="Search ..."
       name="search"
       v-model="searchTerm"
-      v-on:keyup="emitSearchTermToApp"
     >
     <button v-on:click.prevent="fireFetchCall(searchTerm)">Search</button>
     </form>
     <div>
       <h2 v-if="loading === true">Loading...</h2>
-      <h2 v-if="synonyms.length > 0">Words similar to "{{searchTerm}}"</h2>
-      <h2 v-if="error !== ''">No synonyms found for "{{searchTerm}}"</h2>
+      <h2 v-else-if="error !== ''">{{ error }}</h2>
+      <h2 v-else-if="error !== '' && synonyms.length === 0 && searchTerm !== ''">No synonyms found for "{{searchTerm}}"</h2>
+      <h2 v-else-if="loading === false && error === '' && synonyms.length > 0 && searchTerm !== ''">Words similar to "{{searchTerm}}"</h2>
     </div>
   </div>
 
@@ -28,6 +28,7 @@ export default {
   watch: {
     searchTermFromClick: function() {
       this.searchTerm=this.searchTermFromClick,
+      this.error=''
       this.fireFetchCall(this.searchTerm)
     }
   },
@@ -41,22 +42,25 @@ export default {
     }
   }, 
   methods: {
-    emitSearchTermToApp: function() {
-      this.$emit('onSearchInput', this.searchTerm)
-    },
     emitResultsToApp: function() {
       this.$emit('receiveResultsFromSearch', this.results)
     },
     fireFetchCall: async function() {
       try {
+        this.results = [];
+        this.error = '';
         this.loading = true;
         let searchResults = await fetchSynonyms(this.searchTerm)
         this.results = await searchResults
-        this.synonyms = searchResults.meta.syns.flat()
-        this.loading = false
-        this.emitResultsToApp();
+        if (searchResults.meta.syns) {
+          this.synonyms = searchResults.meta.syns.flat()
+          this.loading = false
+          this.emitResultsToApp();
+        } else {
+          this.error = 'There were no words matching your search.'
+        }
       } catch (error) {
-        this.error = 'There was an error finding your synonyms. Please try again.'
+        this.error = 'There was an error finding your synonyms. Please try a different word.'
         this.loading = false
       }
 
@@ -113,5 +117,9 @@ a {
 
 div {
   min-height: 40px;
+}
+
+button:active {
+  outline: none
 }
 </style>

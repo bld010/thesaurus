@@ -6,7 +6,7 @@
       v-on:receiveResultsFromSearch="saveResults"
       :searchTermFromClick="searchTerm"  
     />
-    <WordList :searchTerm="searchTerm" :synonyms="synonyms" />
+    <WordList :searchTerm="searchTerm" :synonyms="synonyms" v-on:onSynonymClick="updateSearchTerm"/>
   </div>
 </template>
 
