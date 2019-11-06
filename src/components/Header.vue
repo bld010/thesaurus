@@ -21,8 +21,7 @@ h1 {
 
 header {
   border-bottom: 1px solid #039B77;
-  margin: 0;
-  padding: 10px;
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
