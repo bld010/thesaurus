@@ -41,13 +41,9 @@ section {
 }
 
   ul {
-    /* min-height: 200px; */
     list-style: none;
-    /* max-width: 400px; */
     margin: auto;
     padding: 20px 0px 20px 40px;
-    /* max-height: 400px; */
-    /* height: 400px; */
     column-count: 2;
     column-width: 50%;
     overflow-y: scroll;

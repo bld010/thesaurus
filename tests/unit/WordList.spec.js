@@ -8,4 +8,5 @@ describe('WordList', () => {
 
     expect(wrapper).toMatchSnapshot();
   })
+
 })
