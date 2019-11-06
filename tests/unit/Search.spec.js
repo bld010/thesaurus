@@ -44,9 +44,16 @@ describe('Search', () => {
       })
 
       expect(mockFireFetchCall).toHaveBeenCalled();
-
-
-
     })
+  })
+
+  describe('emitResultsToApp', () => {
+    const wrapper = shallowMount(Search);
+
+    let mockResults = 'mockResults'
+    wrapper.vm.results = mockResults;
+    wrapper.vm.emitResultsToApp()
+
+    expect(wrapper.emitted()).toEqual({'receiveResultsFromSearch': [[mockResults]]})
   })
 })
