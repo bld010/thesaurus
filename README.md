@@ -32,4 +32,4 @@ To view the testing suite:
 
 ### Gif of Application
 
-
+![Demo of Thesaurus](Thesaurus Demo.gif)
